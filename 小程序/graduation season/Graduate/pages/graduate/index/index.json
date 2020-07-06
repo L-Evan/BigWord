@@ -1,0 +1,6 @@
+{  
+  "disableSwipeBack":true, 
+  "navigationBarTitleText": "" , 
+  "disableScroll": false,
+  "pageOrientation": "landscape"
+}

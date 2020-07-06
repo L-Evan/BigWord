@@ -1,0 +1,109 @@
+<!-- 开场动画 -->
+<view class="startshow">
+	<image style="width:90%" src="../../../images/start.jpg" mode="widthFix"></image>
+</view>
+<!-- 整体内容 -->
+<view class="content" style="opacity:{{content}};">
+	<view class='contentWarp' catchtouchmove="{{index==-1?touchmove:true}}">
+		<!-- 背景 container  -->
+		<view class="temp ">
+			<image class="bg" data-id='-1' bindtouchstart='WraptouchStart' bindtouchmove='WraptouchMove' mode="widthFix" style="width:{{(canvasWidth+2)/canvasPre}}px;" src="{{backImage[backId].url[0]=='/'?urlhead+backImage[backId].url:backImage[backId].url}}"></image>
+		</view>
+		<!-- 音乐 -->
+		<view>
+			 <image src="{{shifouplay?'/images/music-stop.png':'/images/music-start.png'}}" class='pic' catchtap='playMusic'></image>
+		</view>
+		<!-- *************操作区域*************-->
+		<block wx:for="{{itemList}}" wx:key="this">
+			<view class='touchWrap' style='transform: scale({{item.scale}});top:{{item.top}}px;left:{{item.left}}px; z-index:{{item.active?canvasz-1:item.z}}'>
+				<!-- border: {{item.active?4*item.oScale:0}}rpx #fff dashed;   -->
+				<view class='imgWrap {{item.active? "touchActive":""}}' style="transform: rotate({{item.angle}}deg); border: {{item.active?'0.05px dashed  #cfced0':''}}; ">
+					<!-- 图片 -->
+					<image src='{{item.image}}' data-id='{{item.id}}' style='width:{{item.width}}px;height:{{item.height}}px;' bindtouchstart='WraptouchStart' bindtouchmove='WraptouchMove' bindtouchend='WraptouchEnd'></image>
+					<!-- x和o -->
+					<image class='x' src='/images/x.png' style='font-size:0px;transform: scale({{item.oScale}});transform-origin:center;' data-id='{{item.id}}' bindtap='deleteItem'></image>
+					<image class='o' src='/images/o.png' style='font-size:0px;transform: scale({{item.oScale}});transform-origin:center;' data-id='{{item.id}}' bindtouchstart='oTouchStart' bindtouchmove='oTouchMove' bindtouchend='WraptouchEnd'></image>
+
+				</view>
+			</view>
+		</block>
+		<!-- bug点：一定不要用if hidden 隐藏canvas会导致很多api调用bug -->
+		<canvas class='maskCanvas' canvas-id="maskCanvas" style='width:{{canvasWidth*(1+backleft*2)}}px; height:{{canvasHeight*(backtop+1)}}px;'></canvas> 
+		<view class='canvasWrap' style="z-index:{{canvasz}};width:{{canvasWidth/canvasPre}}px;height:{{canvasHeight/canvasPre}}px;" hidden="{{!showCanvas}}">
+			<image class="resImg" mode="widthFix" style="width:{{canvasWidth/canvasPre*0.5}}px;" bindlongtap="saveImg" src="{{canvasTemImg}}"></image>
+			<view class='btn_view'>
+				<button bindtap='saveImg'>保存分享</button>
+				<button bindtap='disappearCanvas'>关闭</button>
+			</view>
+		</view>
+	</view>
+	<!-- **************操作区域************  -->
+	<!-- <movable-area class="fixed" style="width:98vw;height:100vh">
+	<movable-view   scale="false" x="{{canvasWidth-10}}" y="{{canvasWidth-50}}" direction="all" style="z-index:500;">
+		<button class="button1" bindtap="openMask">合成图片</button>
+		<button class="button1" bindtap="ChooseImage" data-index="10086"> 选择 </button>
+		<button class="button1" bindtap="changeBack" data-index="10086"> 切换 </button>
+		<button class="button1" bindtap="initadd" data-index="10086"> 重置 </button>
+	</movable-view>  
+</movable-area> -->
+	<!-- <button bindtap="SubForm" wx:if="{{imgList.length>0}}" >上传</button> -->
+
+	<view animation="{{ani_slide1}}" class="previewbar fixed">
+		<view class="slide_icon" bindtap="{{slidebar==0? 'putbar':'closebar'}}">
+			<image style="" src="../../../images/arrow.png" mode="aspectFit" style="height:38%;display:{{slidebar==0?'block':'none'}}"></image>
+			<image src="../../../images/rightarrow.png" mode="aspectFit" style="height:38%;display:{{slidebar==1?'block':'none'}}"></image>
+		</view>
+		<!-- 背景 -->
+		<view class="contentview" style="display:{{choose==0? 'flex':'none'}}">
+			<scroll-view scroll-y="true" class="scrollview">
+				<button bindtap="addback" style="margin:10px;">+</button>
+				<image lazy-load="true" wx:for="{{backImage}}" src="{{item.url[0]=='/'?urlhead+item.url:item.url}}" data-url="{{item.url[0]=='/'?urlhead+item.url:item.url}}" bindtap="changeBack" data-id="{{index}}"></image>
+			</scroll-view>
+		</view>
+		<!-- 衣服 -->
+		<view class="contentview" style="display:{{choose==1? 'flex':'none'}}">
+			<scroll-view scroll-y="true" class="scrollview">
+				<button bindtap="addclos" style="margin:10px;">+</button>
+				<button bindtap="setHeadUp" style="width:35%;float:left;margin:10px;">上</button>
+				<button bindtap="setHeadDown" style="width:35%;float:right;margin:10px;">下</button>
+				<image lazy-load="true" style="width:50%;" data-id="{{index}}" bindtap="Clothes" mode="widthFix" data-url="{{item.image[0]=='/'?urlhead+item.image:item.image}}" wx:for="{{clothesImage}}" src="{{item.image[0]=='/'?urlhead+item.image:item.image}}"></image>
+			</scroll-view>
+		</view>
+		<!-- 头 -->
+		<view class="contentview" style="display:{{choose==2? 'flex':'none'}}">
+			<scroll-view scroll-y="true" class="scrollview">
+				<button style="margin:10px;" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo='ChooseImage'>+</button>
+				<image lazy-load="true" bindtap="Heads" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" mode="widthFix" data-id="{{index}}" wx:for="{{headsImage}}" src="{{item.image[0]=='/'?urlhead+item.image:item.image}}"></image>
+
+			</scroll-view>
+			<!-- <button bindtap="openMask">合成图片</button>
+		<button bindtap="ChooseImage" data-index="10086"> 选择 </button>
+		<button bindtap="changeBack" data-index="10086"> 切换 </button>
+		<button bindtap="initadd" data-index="10086"> 重置 </button> -->
+		</view>
+
+		<view class="choosebar" lang="zh_CN">
+			<view id="0" animation="{{ani_slide2}}" class="slide_choose {{choose==0? 'choice':''}}" bindtap="slidechoose">
+				<image src="../../../images/background.png" mode="aspectFit"></image>
+			</view>
+
+			<view id="1" animation="{{ani_slide3}}" class="slide_choose {{choose==1? 'choice':''}}" bindtap="slidechoose">
+				<image src="../../../images/cloth.png" mode="aspectFit"></image>
+			</view>
+
+			<view id="2" animation="{{ani_slide3}}" class="slide_choose {{choose==1? 'choice':''}}" bindtap="slidechoose">
+				<image src="../../../images/add.png" mode="aspectFit"></image>
+			</view>
+		</view>
+	</view>
+
+	<!-- 中间操作栏(合成和重置) -->
+	<view class="opreatebar">
+		<view bindtap="openMask" style="border: solid #f0a4b1;background-color: #f0a4b1;">
+			<image style="height:100%" src="../../../images/create.png" mode="aspectFit"></image>
+		</view>
+		<view bindtap="initadd" style="border: solid #ffdd00;background-color: #ffdd00;">
+			<image style="height:100%" src="../../../images/reset.png" mode="aspectFit"></image>
+		</view>
+	</view>
+</view>

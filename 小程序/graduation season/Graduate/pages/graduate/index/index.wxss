@@ -1,0 +1,337 @@
+/**index.wxss**/
+page{
+    overflow: scroll;
+    animation: noscroll 5s;
+}
+@keyframes noscroll{ 
+    0%{overflow: hidden;}
+    100%{overflow: hidden;}
+  }
+/* 开场动画样式 */
+.startshow{
+    width:100vw;
+    height:100vh;
+    background-color: #fff;
+    opacity: 0;
+    animation: showandfade 5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  @keyframes showandfade{ /*设置内容由显示变为隐藏*/
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+  }
+
+  .remind-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 300rpx;
+  }
+  
+  .remind-img {
+    width: 250rpx;
+    height: 250rpx;
+    padding-bottom: 25rpx;
+  }
+  .content{
+    opacity: 0;
+    animation: show 2s ease;
+    animation-delay: 5s;
+  }
+  @keyframes show{ /*设置内容由显示变为隐藏*/
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+  }
+
+/* 新增样式 */
+@font-face {font-family: "iconfont";
+    src: url('//at.alicdn.com/t/font_1867921_1pq0ycnd7yr.eot?t=1591450350395'); /* IE9 */
+    src: url('//at.alicdn.com/t/font_1867921_1pq0ycnd7yr.eot?t=1591450350395#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAREAAsAAAAACOQAAAP3AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDGgqFDIQrATYCJAMUCwwABCAFhG0HVRusB1GULsoyso/DdGMvY4jF5MqDiPh/j6B+P7b3BLUkSTQSRaebRE00olcShELKVEKnewl/vjz7SaerZI2s6OJDxaSbLbIvTRfAHdDxi7iBNx0cM12K5wHNMaMs2qbjAQ0oqj+xgf9BHsx/mF7CQF7eTaDDuCDYVk6RABgqnEGBuKYVEmBYkig98aFNaGmZWcQr0NOWnnk3APAS/378g4gwJKmZM3L7KlsO0r4MPuHw6X+7fSECUNdTgc0jYwFQiNNWzT6YehZAHYaHbwY4V6fgC//f8GUQUk7Lgf/xkky0cDhdELvmLXwZ+JScawhFAnKNoEiCXBxyXSO69uxANz4AiBUNjPJxRSj9BgZ9loaOht6mTtcb0fqxwSt+AmjBS0nTdlPijSF/YWP4lsjcYPGEvf7YSW+LldNOBuOnfJpweIQLebhOb3eH7rthxH776uA6hnVegdETg6ccsSMPQPtDf15PJNx4jM0/2td7Buy8Fa174daLFwYv+djig6vWgtV2f+GSN29ppMmGcMVXvNGhwB89Ej1+LH74UAjaV01wQS1qHzzgmp3E0BoACinxYB2RDYLQ36LZ4vEj959R0GJu7pvmz5rHz2ho+XFEXz8/X5CcJRDEvDG5fk2YIHz71vrwm35TtVn/G/WbUTO16egbEF3e3m/h3j/gEa4wkJX1lRgTjxFfs/q+mEY6R5omW0S8nCJQPCKmHsSWxwR4ZX9a6xWufcoiAvRiyssOj3nCuiyQJM3f2s48K62Y/pf1b7piv+Xd1s1NiyjLlhaz8jA8cvbUbCSeXG5WbGkVAdbXN/ZgdXXYHldUVxdQctOGZV2mX2O50ZADMbrLFueUWy51H4gzDUDzCYqgIwDNe/gUGtOs50dQ9GP8jbdRv/0HzZJ+GxIFfGLHv8QzmvYC8hMA2iRGU38D6siyYtIdaS0606dobbVUGCyhQwca4BgGvFqHNzzaRWgrURkkrcYgazOBLNgFqDotQos2q9BhXu78ToNYUJR2zOkBEPrsQNLjHbI+N5EF+xKqEZ+hRV9A6HAYVit2mgoaz2SRhENyUtpA0jJGQ3lyDk/iK5BCp5KwRXqMEyFWS9vJ8JCwqj8XaRC7xhhtrSKC4yiSYhk1mQP2QyoVQ9awTDWScSFVHFeTEBpKtb1SiIxRA9wmFiLBQeRIUg1INBmGBhXW5+C1n6+AKOioSLA9WQ1yEYSlRTdPChcibAQyl6MZlfUs7bVqKUTgcCjcj8JiqJFyoApRuR4Gqaa9WzVEhhOiaoarRoJQVI0aywnZn6e+xw3QwXm6GilylKjRov0M0dW0RsHp9AQMo9LyG2hKZy5DUlqiUXnCg5zv1uoYAAAA') format('woff2'),
+    url('//at.alicdn.com/t/font_1867921_1pq0ycnd7yr.woff?t=1591450350395') format('woff'),
+    url('//at.alicdn.com/t/font_1867921_1pq0ycnd7yr.ttf?t=1591450350395') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('//at.alicdn.com/t/font_1867921_1pq0ycnd7yr.svg?t=1591450350395#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon_background:before {
+    content: "\e608";
+  }
+  
+  .icon_tools:before {
+    content: "\e609";
+  }
+  
+  .icon_cloth:before {
+    content: "\e60a";
+  }
+  
+  .icon_slide:before {
+    content: "\e607";
+  } 
+.previewbar{
+    top:0;
+    height:100vh;
+    width:200px;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    position: fixed;
+    right: -170px; 
+    z-index:999;
+}
+
+.slide_icon{
+    height: 17%;
+    width: 15%;
+    z-index:10;
+    border: solid #ffdd00 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #ffdd00;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.choosebar{
+    z-index: 100;
+    position: absolute;
+    top: 88%;
+    left: 15%;
+    width: 85%;
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+}
+.slide_choose{
+    z-index: 100;
+    height: 80px;
+    width: 50px;
+} 
+.slide_choose image{
+    height: 30px;
+}
+
+.contentview{
+    height:99%;
+    width: 85%;
+    border-radius: 5px;
+    border: solid #ffdd00;
+    background-color: #ffdd00;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+.scrollview{
+    margin-top: 5px;
+    height: 85%;
+    width: 90%;
+}
+.scrollview image{
+    height: 28%;
+    width: 100%;
+}
+.opreatebar{
+    z-index: 999;
+    position: fixed;
+    top: 83vh;
+    left: 40vw;
+    height: 13vh;
+    width: 20vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.opreatebar view{
+    height: 100%;
+    width: 35%;
+    border-radius: 5px; 
+} 
+.bg {
+    z-index: 0;
+    position: absolute;  
+} 
+.pic{
+    position:absolute;  
+    height: 33px; 
+    width: 33px;   
+    z-index:999;
+    top:15;
+    left:15; 
+  }
+.temp image{  
+    vertical-align:middle;
+}
+.contentWarp {  
+    position: absolute;  
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto; 
+    /* overflow: hidden; */
+    /* background-color: #d1e3f1; */
+}
+
+.touchWrap {
+    transform-origin: center;
+    position: absolute;
+    z-index: 100;
+}
+
+.imgWrap {
+    box-sizing: border-box;
+    width: 100%;
+    transform-origin: center;
+    float: left;
+    border: 0.5px transparent dashed;
+}
+
+.imgWrap image {
+    float: left;
+}
+
+.touchActive .x {
+    display: block;
+}
+
+.touchActive .o {
+    display: block;
+}
+
+.add {
+    width: 5vw;
+    height: 5vw;
+    position: absolute;
+    z-index: 0;
+}
+
+.x {
+    position: absolute;
+    top: -12.5px;
+    left: -12.5px;
+    z-index: 500;
+    display: none;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    font-weight: bold;
+    color: #d1e3f1;
+}
+
+.o {
+    position: absolute;
+    bottom: -12.5px;
+    right: -12.5px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    display: none;
+    overflow: hidden;
+    font-weight: bold;
+    color: #d1e3f1;
+}
+
+.active {
+    background-color: rgb(78, 114, 151);
+}
+
+.active view {
+    border: none;
+}
+
+.touchActive {
+    /* border: 4rpx #fff dashed; */
+    z-index: 400;
+}
+
+
+.canvasWrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    text-align: center;
+}
+
+.maskCanvas {
+    position: absolute;
+    left:  -400%; 
+    top: -200%;
+}
+
+.btn {
+    font-size: 30rpx;
+    color: #81b7c4;
+    border: 3rpx solid #81b7c4;
+    background-color: #fff;
+    line-height: 90rpx;
+    width: 50%;
+    margin-top: 20rpx;
+    height: 90rpx;
+}
+
+.btnView view {
+    padding-bottom: 20rpx;
+}
+
+.hand {
+    position: absolute;
+    left: 100rpx;
+    
+    right: 0;
+    margin: auto;
+    z-index: 100;
+}
+
+.getUserInfoBtn {
+    position: initial;
+    border: none;
+    background-color: none;
+}
+
+.getUserInfoBtn::after {
+    border: none;
+}
+
+.btn_view {
+    display: flex;
+    padding: 10px;
+}
+
+.btn_view button {
+    width: 150px;
+    font-size: 15px;
+    color: #81b7c4;
+    border: 1.5px solid #81b7c4;
+    background-color: #fff;
+    line-height: 45px;
+}
+.button1{  
+    width:100px;
+}
+.resImg {
+    height: 75%;
+    margin-top: 10px;
+}

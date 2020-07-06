@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/graduate/index/index",
+    "pages/graduate/cropper/cropper"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black",
+    "navigationStyle": "custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}
