@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.levan.myapplication">
+
+    <!-- 存储权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--网络权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 广播 -->
+    <!-- <receiver android:name="xxx.xxx.RemindReceiver" /> -->
+    <!-- android:theme="@style/AppTheme" -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/time"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/time"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity android:name=".User.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainPageActivity"
+            android:label="@string/title_activity_main_page" />
+        <activity android:name=".User.RegisterActivity" />
+        <activity android:name=".User.welcomeActivity" />
+        <activity android:name=".MyInfoActivity" />
+        <activity android:name=".PutActivity" />
+        <!-- 广播 -->
+        <receiver android:name=".Server.RemindReceiver"
+            android:permission="">
+            <intent-filter>
+                <action android:name="com.Reminder.MyReceiver" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".Server.MusicsService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="" />
+
+        <activity android:name=".WebActivity" />
+    </application>
+
+</manifest>

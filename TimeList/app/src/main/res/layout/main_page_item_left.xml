@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/allView"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#ffffff">
+
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="83dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5.5"
+        android:colorAccent="#f1c266"
+        android:gravity="center"
+        tools:targetApi="lollipop" />
+
+    <LinearLayout
+        android:id="@+id/mainline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5.5"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="我生日" />
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textColor="?attr/colorError"
+                android:textSize="12sp"
+                tools:text="05/14 周二" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
